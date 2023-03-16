@@ -5,7 +5,7 @@ import torch
 from datasets import Dataset, load_from_disk, concatenate_datasets
 from sentence_transformers import SentenceTransformer
 model_path = "../../../pretrained_weights/symanto-sn-xlm-roberta-base-snli-mnli-anli-xnli/"
-​
+
 class SearchEngine:
     def __init__(self, base_df, model_path, search_columns=[""]):
         self.model = SentenceTransformer(model_path, device="cuda")
@@ -38,11 +38,11 @@ class SearchEngine:
     
     def find_similar_text(self, text, top_k=5):
         search_embedding = self.model.encode(text)
-​
+
         return self.base_ds.get_nearest_examples(
             "embeddings", search_embedding, k=top_k
         ) # scores, samples
-​
+
     def add_new_dataframe(self, df):
         ds = Dataset.from_pandas(df)
         ds = self.deal_dataset(ds)
