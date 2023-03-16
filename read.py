@@ -1,6 +1,6 @@
 import pandas as pd
 
-with open("D:/bishe/zhihu/csl_camera_readly.tsv", "rb") as fp:
+with open("csl_camera_readly.tsv", "rb") as fp:
     lines = fp.readlines()
     title_list = []
     abstract_list = []
